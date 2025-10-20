@@ -10,20 +10,27 @@ const Countries = ({countriesPromise}) => {
     const [visitedcountryList,setVisitedCountryList]=useState([])
     const [flagsCountry,setFlagsCountry]=useState([])
 
-    const handleVisitedCountryList=(country)=>{
+    const handleVisitedCountryList=(country,status)=>{
         console.log("List of Country list:",country.name.common)
-        setVisitedCountryList([...visitedcountryList, country.name.common])
+        console.log(status)
+        status
+        ? setVisitedCountryList([...visitedcountryList, country.name.common])
+        : setVisitedCountryList(visitedcountryList.filter(name => name !== country.name.common));
+        // setVisitedCountryList([...visitedcountryList, country.name.common])
     }
 
-    const handleFlagsCountry=(flags)=>{
+    const handleFlagsCountry=(flags,status)=>{
         console.log("Flags country ",flags)
-        setFlagsCountry([...flagsCountry, flags.png])
+        status ? setFlagsCountry([...flagsCountry, flags.png]) 
+        : setFlagsCountry(flagsCountry.filter(flag => flag !== flags.png));
+        
     }
 
     return (
         <div>
             <h2>Traveling Contries {visitedcountryList.length}</h2>
-            <h3>Visited Country : {visitedcountryList} </h3>
+            {/* <h3>Visited Country : {visitedcountryList} </h3> */}
+            <h3>Visited Country : {} </h3>
             
             <div>
                 <ol>
